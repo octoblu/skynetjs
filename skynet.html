@@ -1,0 +1,23 @@
+<html>
+<head>
+  <script src="skynet.js"></script>
+  <script>
+    var skynetConfig = {
+      "uuid": "0d3a53a0-2a0b-11e3-b09c-ff4de847b2cc",
+      "token": "qirqglm6yb1vpldixflopnux4phtcsor"
+    }
+    function skynetNotReady() {
+      console.log('UUID/token not authorized');
+    };          
+    function skynetReady() {
+      skynet.emit('status', function(data){
+        console.log('status received');
+        console.log(data);
+      });          
+    }
+  </script>
+</head>
+<body>
+  Skynet client-side app
+</body>
+</html>
