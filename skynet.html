@@ -13,7 +13,69 @@
       skynet.emit('status', function(data){
         console.log('status received');
         console.log(data);
+      });   
+
+      // Subscribe and unsubscribe to a device's messages and events
+      skynet.emit('subscribe', {
+        "uuid": "0d3a53a0-2a0b-11e3-b09c-ff4de847b2cc",
+        "token": "qirqglm6yb1vpldixflopnux4phtcsor"
+      }, function (data) {
+        console.log(data); 
+      });
+
+      skynet.emit('unsubscribe', {"uuid": "0d3a53a0-2a0b-11e3-b09c-ff4de847b2cc"}, function (data) {
+        console.log(data);
+      });  
+
+      // Send and receive messages
+      skynet.emit('send', {
+        "devices": "all",
+        "message": {
+        "skynet":"online"
+      }}, function(data){
+        console.log(data);
+      }); 
+      skynet.on('message', function(data){
+        console.log('message received');
+        console.log(data);
+      });
+
+      // Get the status of the Skynet network
+      skynet.emit('status', function(data){
+        console.log('status received');
+        console.log(data);
       });          
+
+      // Register device
+      skynet.emit('register', {
+        "type":"drone"
+      }, function (data) {
+        console.log(data); 
+      });
+
+
+      // Update device
+      skynet.emit('update', {
+        "uuid": "0d3a53a0-2a0b-11e3-b09c-ff4de847b2cc",
+        "token": "qirqglm6yb1vpldixflopnux4phtcsor",
+        "armed":true
+      }, function (data) {
+        console.log(data); 
+      });
+
+      // WhoAmI?
+      skynet.emit('whoami', {"uuid":"0d3a53a0-2a0b-11e3-b09c-ff4de847b2cc"}, function (data) {
+        console.log(data); 
+      });      
+
+      // Receive last 10 device events
+      skynet.emit('events', {
+        "uuid": "0d3a53a0-2a0b-11e3-b09c-ff4de847b2cc",
+        "token": "qirqglm6yb1vpldixflopnux4phtcsor"
+      }, function (data) {
+        console.log(data); 
+      });      
+
     }
   </script>
 </head>
