@@ -29,16 +29,15 @@
       });  
 
       // Send and receive messages
-      socket.emit('send', {
-        "devices": "all",
+      socket.emit('message', {
+        "devices": "*",
         "message": {
-        "skynet":"online"
+        "red":"on"
       }}, function(data){
         console.log(data);
       }); 
-      socket.on('message', function(data){
-        console.log('message received');
-        console.log(data);
+      socket.on('message', function(channel, message){
+        console.log('message received', channel, message);
       });
 
       // Get the status of the Skynet network
@@ -79,8 +78,12 @@
 
     });
   </script>
+
 </head>
 <body>
   Skynet client-side app
+  
+  <hr/>
+  <div id="log"></div>  
 </body>
 </html>
